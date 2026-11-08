@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>SweetStore | Iniciar sesión</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, Arial, sans-serif;
+
+            background:
+                    radial-gradient(
+                            circle at 15% 20%,
+                            rgba(255, 166, 211, .45),
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 85% 80%,
+                            rgba(190, 136, 255, .35),
+                            transparent 30%
+                    ),
+                    linear-gradient(
+                            135deg,
+                            #fff1f8,
+                            #f8edff,
+                            #fff7fb
+                    );
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* ============================= */
+        /* IZQUIERDA                     */
+        /* ============================= */
+
+        .visual-side {
+            width: 55%;
+            min-height: 100vh;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            #a83a98,
+                            #d8328b 45%,
+                            #f57ab8
+                    );
+
+            color: white;
+        }
+
+        .visual-content {
+            max-width: 620px;
+            padding: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 60px;
+        }
+
+        .brand-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+
+            background: rgba(255,255,255,.18);
+            backdrop-filter: blur(10px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+        }
+
+        .brand-name {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            line-height: 1.7;
+            opacity: .9;
+            max-width: 500px;
+        }
+
+        .feature-list {
+            margin-top: 40px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 13px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(255,255,255,.18);
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.10);
+        }
+
+        .bubble.one {
+            width: 320px;
+            height: 320px;
+            right: -120px;
+            top: -80px;
+        }
+
+        .bubble.two {
+            width: 260px;
+            height: 260px;
+            left: -100px;
+            bottom: -80px;
+        }
+
+        .bubble.three {
+            width: 100px;
+            height: 100px;
+            right: 90px;
+            bottom: 110px;
+        }
+
+        /* ============================= */
+        /* LOGIN                         */
+        /* ============================= */
+
+        .login-side {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .mobile-logo {
+            display: none;
+        }
+
+        .login-box h2 {
+            color: #41164c;
+            font-weight: 800;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .login-box .subtitle {
+            color: #84728c;
+            margin-bottom: 35px;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: #4c3454;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a168ab;
+            font-size: 18px;
+        }
+
+        .form-control {
+            height: 56px;
+            border-radius: 16px;
+            border: 1px solid #e5d5ea;
+            padding-left: 48px;
+            background: rgba(255,255,255,.8);
+        }
+
+        .form-control:focus {
+            border-color: #d83a92;
+            box-shadow: 0 0 0 .2rem rgba(216,58,146,.12);
+        }
+
+        .btn-login {
+            height: 56px;
+            border: 0;
+            border-radius: 16px;
+
+            background:
+                    linear-gradient(
+                            90deg,
+                            #d82f91,
+                            #a53fa8
+                    );
+
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+
+            box-shadow:
+                    0 10px 25px rgba(189,45,145,.25);
+
+            transition: .2s;
+        }
+
+        .btn-login:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow:
+                    0 15px 30px rgba(189,45,145,.32);
+        }
+
+        .security {
+            margin-top: 25px;
+            text-align: center;
+            color: #9b899f;
+            font-size: 13px;
+        }
+
+        .alert-danger {
+            border: 0;
+            border-radius: 15px;
+            background: #ffe8ef;
+            color: #c2245e;
+        }
+
+        @media (max-width: 992px) {
+
+            .visual-side {
+                display: none;
+            }
+
+            .login-side {
+                width: 100%;
+            }
+
+            .mobile-logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 40px;
+
+                color: #b02f87;
+                font-weight: 800;
+                font-size: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+    <!-- LADO VISUAL -->
+
+    <section class="visual-side">
+
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+
+
+        <div class="visual-content">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🍭
+                </div>
+
+                <h1 class="brand-name">
+                    SweetStore
+                </h1>
+
+            </div>
+
+
+            <h2 class="hero-title">
+                Tu inventario,<br>
+                más dulce y organizado.
+            </h2>
+
+            <p class="hero-text">
+                Controla productos, existencias,
+                entradas y salidas desde un solo lugar.
+            </p>
+
+
+            <div class="feature-list">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+
+                    Control de productos e inventario
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+
+                    Alertas automáticas de stock bajo
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                    </div>
+
+                    Reportes para apoyar tus decisiones
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOGIN -->
+
+    <section class="login-side">
+
+        <div class="login-box">
+
+            <div class="mobile-logo">
+                🍭 SweetStore
+            </div>
+
+            <span class="badge rounded-pill
+                         text-bg-light
+                         mb-3
+                         px-3 py-2">
+
+                Panel administrativo
+
+            </span>
+
+            <h2>
+                ¡Hola de nuevo!
+            </h2>
+
+            <p class="subtitle">
+                Ingresa tus credenciales para continuar.
+            </p>
+
+
+            {#if error}
+
+                <div class="alert alert-danger mb-4">
+
+                    <i class="bi bi-exclamation-circle me-2"></i>
+
+                    {error}
+
+                </div>
+
+            {/if}
+
+
+            <form action="/login"
+                  method="post">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Usuario
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="bi bi-person"></i>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="username"
+                                placeholder="Ingresa tu usuario"
+                                autocomplete="username"
+                                required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+                        Contraseña
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="bi bi-lock"></i>
+
+                        <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                placeholder="Ingresa tu contraseña"
+                                autocomplete="current-password"
+                                required>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn btn-login w-100"
+                        type="submit">
+
+                    Iniciar sesión
+
+                    <i class="bi bi-arrow-right ms-2"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="security">
+
+                <i class="bi bi-shield-check me-1"></i>
+
+                Acceso exclusivo para administración
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+
+</html>
